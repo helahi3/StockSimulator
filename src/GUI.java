@@ -14,6 +14,50 @@ public class GUI {
 	private JFrame frame;
 	private JTextField txtStockSymbol;
 	private JTextField txtQuantity;
+	private JButton btnBuy;
+
+	private JTextArea txtrDisplayInfoHere;
+	
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JTextField getTxtStockSymbol() {
+		return txtStockSymbol;
+	}
+
+	public void setTxtStockSymbol(JTextField txtStockSymbol) {
+		this.txtStockSymbol = txtStockSymbol;
+	}
+
+	public JTextField getTxtQuantity() {
+		return txtQuantity;
+	}
+
+	public void setTxtQuantity(JTextField txtQuantity) {
+		this.txtQuantity = txtQuantity;
+	}
+
+	public JButton getBtnBuy() {
+		return btnBuy;
+	}
+
+	public void setBtnBuy(JButton btnBuy) {
+		this.btnBuy = btnBuy;
+	}
+
+	public JTextArea getTxtrDisplayInfoHere() {
+		return txtrDisplayInfoHere;
+	}
+
+	public void setTxtrDisplayInfoHere(JTextArea txtrDisplayInfoHere) {
+		this.txtrDisplayInfoHere = txtrDisplayInfoHere;
+	}
 
 	/**
 	 * Launch the application.
@@ -51,64 +95,37 @@ public class GUI {
 		lblWelcomeToHamzas.setBounds(6, 6, 239, 16);
 		frame.getContentPane().add(lblWelcomeToHamzas);
 		
+		
+		//Stock Symbol text box
 		txtStockSymbol = new JTextField();
-		txtStockSymbol.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String textFieldValue = txtStockSymbol.getText();
-				txtStockSymbol.setText(textFieldValue);
-			}
-		});
 		txtStockSymbol.setText("Stock Symbol");
 		txtStockSymbol.setBounds(6, 56, 130, 26);
 		frame.getContentPane().add(txtStockSymbol);
 		txtStockSymbol.setColumns(10);
 		
+		//Quantity text box
 		txtQuantity = new JTextField();
-		txtQuantity.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String textFieldValue = txtQuantity.getText();
-				txtQuantity.setText(textFieldValue);
-			}
-		});
-
 		txtQuantity.setText("Quantity");
 		txtQuantity.setBounds(6, 94, 130, 26);
 		frame.getContentPane().add(txtQuantity);
 		txtQuantity.setColumns(10);
 		
-		JButton btnBuy = new JButton("Buy");
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-			}
-		});
+		//Buy button
+		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(204, 56, 117, 29);
 		frame.getContentPane().add(btnBuy);
-		
-		JButton btnSell = new JButton("Sell");
-		btnSell.setBounds(204, 94, 117, 29);
-		frame.getContentPane().add(btnSell);
-		
-		JButton btnViewPortfolio = new JButton("View Portfolio");
-		btnViewPortfolio.setBounds(327, 56, 117, 29);
-		frame.getContentPane().add(btnViewPortfolio);
-		
-		JButton btnViewStockInfo = new JButton("View Stock");
-		btnViewStockInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnViewStockInfo.setBounds(327, 94, 117, 29);
-		frame.getContentPane().add(btnViewStockInfo);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(6, 132, 438, 140);
 		frame.getContentPane().add(scrollPane);
 		
-		JTextArea txtrDisplayInfoHere = new JTextArea();
+		txtrDisplayInfoHere = new JTextArea();
 		txtrDisplayInfoHere.setText("Display Info Here");
 		scrollPane.setViewportView(txtrDisplayInfoHere);
-		
-		
-	}
+		}
+
+
+
+
+
 }

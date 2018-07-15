@@ -30,7 +30,7 @@ public class Portfolio {
 	public Portfolio() {
 		stockList = new ArrayList<Stock>();
 		portfolioValue = 0.0;
-		cash = 0.0;
+		cash = 10000.0;
 	}
 	
 	/**
@@ -113,8 +113,8 @@ public class Portfolio {
 	public boolean stockPurchase(String symbol, int quantity) {
 		Double price = APIController.getStockPrice(symbol);
 		if(price < 0) return false; //There was some error / wrong symbol entered
-		if(price * quantity < cash) return false; //Cannot afford this quantity of stocks 
-		
+		if(price * quantity > cash) return false; //Cannot afford this quantity of stocks 
+
 		this.cash -= price * quantity;
 		
 		//if stockList does not contain this stock
