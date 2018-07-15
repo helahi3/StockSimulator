@@ -8,7 +8,12 @@ public class Stock {
 	private int quantity;
 	
 	
-	//Constructor
+	/**
+	 * Constructor
+	 * @param symbol
+	 * @param quantity
+	 * @param price
+	 */
 	public Stock(String symbol, int quantity, double price) {
 		this.symbol = symbol;
 		this.quantity = quantity;
@@ -60,6 +65,12 @@ public class Stock {
 	public void update(int quant) {
 		this.quantity += quant;
 		if (this.quantity < 0) this.quantity = 0;
+	}
+	
+	public String toString() {
+		String info = "";
+		info += this.symbol + "\n" + this.quantity + this.currentPrice;
+		return info;
 	}
 	
 	/*public JSONObject stockInfo() {

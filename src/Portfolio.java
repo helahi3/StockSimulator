@@ -8,14 +8,25 @@ public class Portfolio {
 	private Double portfolioValue;
 	private Double cash;
 	
+	/**
+	 * Getter method for stockList
+	 * @return the stock list
+	 */
 	public ArrayList<Stock> getStockList() {
 		return stockList;
 	}
 
+	/**
+	 * Getter method for cash
+	 * @return current cash
+	 */
 	public Double getCash() {
 		return cash;
 	}
 
+	/**
+	 * Constructor
+	 */
 	public Portfolio() {
 		stockList = new ArrayList<Stock>();
 		portfolioValue = 0.0;
@@ -94,7 +105,7 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Checks if a particular stock symbol exists, or can be bought
+	 * Checks if a particular stock symbol exists, or can be bought, then makes the purchase
 	 * @param symbol
 	 * @param quantity
 	 * @return whether the stock was bought or not
@@ -103,22 +114,47 @@ public class Portfolio {
 		Double price = APIController.getStockPrice(symbol);
 		if(price < 0) return false; //There was some error / wrong symbol entered
 		if(price * quantity < cash) return false; //Cannot afford this quantity of stocks 
+		
+		this.cash -= price * quantity;
+		
+		//if stockList does not contain this stock
 		if(!checkStock(symbol)) {
-			
+			stockList.add(new Stock(symbol, quantity, price));
+		}
+		else { //Else just get the stock and update teh quantity
+			Stock s = getStock(symbol);
+			s.update(quantity);
 		}
 		
 		return true;
 	}
 	
+	/**
+	 * Sells a quantity of a stock after checking quantity owned
+	 * @param symbol
+	 * @param quantity
+	 * @return whether stock was sold or not
+	 */
 	public boolean stockSale(String symbol, int quantity) {
 		Double price = APIController.getStockPrice(symbol);
 		if(price < 0) return false; //There was some error / wrong symbol entered
 		Stock s = getStock(symbol);
 		if(getStockQuant(s) < quantity) return false; //Do not own this quantity of stocks
 
-		s.update(quantity);
+		this.cash += price * quantity;
+		
+		s.update(-quantity);
 		return true;
 		
+	}
+	
+	public String toString() {
+		String info = "";
+		for(Stock s : stockList) {
+			info += s.toString();
+			info += "\n";
+		}
+		return info;
 	}
 	
 	

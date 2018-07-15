@@ -5,17 +5,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
-
-import java.text.SimpleDateFormat;  
-import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -88,13 +81,6 @@ public class APIController {
         return sb.toString();
       }
 
-    public String getDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-        Date date = new Date();  
-       
-        return formatter.format(date);  
-
-    }
     
     public static void main(String[] args) {
     	System.out.println(getStockPrice("TSLA"));
