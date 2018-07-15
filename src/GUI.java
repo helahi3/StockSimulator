@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JFormattedTextField;
 
 public class GUI {
 
@@ -17,8 +18,46 @@ public class GUI {
 	private JButton btnBuy;
 
 	private JTextArea txtrDisplayInfoHere;
+	private JButton btnViewPortfolio;
+	private JButton btnSell;
+	private JButton btnViewStock;
+	
+	private JLabel lblCash;
 	
 	
+	public JLabel getLblCash() {
+		return lblCash;
+	}
+
+	public void setLblCash(Double cash) {
+		this.lblCash.setText("" + cash);
+
+	}
+
+	public JButton getBtnViewPortfolio() {
+		return btnViewPortfolio;
+	}
+
+	public void setBtnViewPortfolio(JButton btnViewPortfolio) {
+		this.btnViewPortfolio = btnViewPortfolio;
+	}
+
+	public JButton getBtnSell() {
+		return btnSell;
+	}
+
+	public void setBtnSell(JButton btnSell) {
+		this.btnSell = btnSell;
+	}
+
+	public JButton getBtnViewStock() {
+		return btnViewStock;
+	}
+
+	public void setBtnViewStock(JButton btnViewStock) {
+		this.btnViewStock = btnViewStock;
+	}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -55,8 +94,8 @@ public class GUI {
 		return txtrDisplayInfoHere;
 	}
 
-	public void setTxtrDisplayInfoHere(JTextArea txtrDisplayInfoHere) {
-		this.txtrDisplayInfoHere = txtrDisplayInfoHere;
+	public void setTxtrDisplayInfoHere(String info) {
+		this.txtrDisplayInfoHere.setText(info);
 	}
 
 	/**
@@ -120,12 +159,25 @@ public class GUI {
 		frame.getContentPane().add(scrollPane);
 		
 		txtrDisplayInfoHere = new JTextArea();
+		txtrDisplayInfoHere.setWrapStyleWord(true);
+		txtrDisplayInfoHere.setLineWrap(true);
 		txtrDisplayInfoHere.setText("Display Info Here");
 		scrollPane.setViewportView(txtrDisplayInfoHere);
+		
+		btnViewPortfolio = new JButton("View Portfolio");
+		btnViewPortfolio.setBounds(333, 56, 117, 29);
+		frame.getContentPane().add(btnViewPortfolio);
+		
+		btnSell = new JButton("Sell");
+		btnSell.setBounds(204, 94, 117, 29);
+		frame.getContentPane().add(btnSell);
+		
+		btnViewStock = new JButton("View Stock");
+		btnViewStock.setBounds(333, 94, 117, 29);
+		frame.getContentPane().add(btnViewStock);
+		
+		lblCash = new JLabel("Cash");
+		lblCash.setBounds(333, 6, 61, 16);
+		frame.getContentPane().add(lblCash);
 		}
-
-
-
-
-
 }

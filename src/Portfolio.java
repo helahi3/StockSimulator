@@ -150,12 +150,16 @@ public class Portfolio {
 	
 	public String toString() {
 		String info = "";
+		int i = 0;
 		for(Stock s : stockList) {
+			info += "No. " + ++i + "\n";
 			info += s.toString();
-			info += "\n";
+			info += "\n\n";
 		}
-		return info;
+		String portfolioInfo = "";
+		portfolioInfo = "Cash: " + cash + "\nNumber of Positions: " + stockList.size() + "\n";
+		 
+		return portfolioInfo + info;
 	}
-	
-	
+		
 }

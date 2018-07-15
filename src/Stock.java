@@ -69,21 +69,18 @@ public class Stock {
 	
 	public String toString() {
 		String info = "";
-		info += this.symbol + "\n" + this.quantity + this.currentPrice;
+		info += this.symbol.toUpperCase() + "\nQuantity: " + this.quantity + "\nPrice: " + this.currentPrice
+				+ "\nMarket Value: " + quantity*currentPrice;
 		return info;
 	}
 	
-	/*public JSONObject stockInfo() {
+	public static String stockInfo(String s) {
+		String info = "";
+		info += s + "\n" + APIController.getStockPrice(s);
 		
-		JSONObject stock = new JSONObject();
-		stock.put("symbol", this.symbol);
-		stock.put("name", this.name);
-		stock.put("purchase price", this.purchasePrice);
-		stock.put("current price", this.currentPrice);
-		stock.put("quantity", quantity);
-		
-		return stock;
-	}*/
+		return info;
+
+	}
 	
 	
 }

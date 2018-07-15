@@ -81,9 +81,4 @@ public class APIController {
         return sb.toString();
       }
 
-    
-    public static void main(String[] args) {
-    	System.out.println(getStockPrice("TSLA"));
-    }
-
 }
