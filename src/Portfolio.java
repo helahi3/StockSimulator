@@ -1,7 +1,13 @@
+/**
+ * Portfolio class
+ * Creates a portfolio object
+ */
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Portfolio {
+public class Portfolio  {
 
 	//TODO: Decide which one to use
 	private ArrayList<Stock> stockList;
