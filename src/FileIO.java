@@ -1,10 +1,38 @@
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ConvertObject {
+import controller.ViewController;
 
+public class FileIO {
+
+	public static void saveToFile(byte[] b) {
+		try {
+			FileOutputStream fos = new FileOutputStream("/Portfolio"); 
+			fos.write(b);
+		} catch (Exception e) {
+			//TODO:Do something
+		}
+	}
+	
+//	public static byte[] loadFromFile(String pathname) {
+//		FileInputStream fis;
+//		try { 
+//			fis = new FileInputStream(pathname);
+//			while(fis.read() != -1);
+//		} catch (Exception e) {
+//			//TODO: do something
+//		} finally {
+//			return fis.toString();
+//		}
+//		 
+//	}
+	
+	
     public static byte[] getByteArrayObject(ViewController vc){
         byte[] byteArrayObject = null;
         try {

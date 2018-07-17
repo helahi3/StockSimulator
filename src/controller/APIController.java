@@ -1,3 +1,4 @@
+package controller;
 //Wrapper for AlphaVantage API
 //Limited use, only wrapping the necessary functions
 

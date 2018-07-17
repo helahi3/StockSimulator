@@ -1,7 +1,9 @@
+package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -22,17 +24,8 @@ public class GUI {
 	private JButton btnSell;
 	private JButton btnViewStock;
 	
-	private JLabel lblCash;
+	private JOptionPane openingDialog;
 	
-	
-	public JLabel getLblCash() {
-		return lblCash;
-	}
-
-	public void setLblCash(Double cash) {
-		this.lblCash.setText("" + cash);
-
-	}
 
 	public JButton getBtnViewPortfolio() {
 		return btnViewPortfolio;
@@ -175,9 +168,5 @@ public class GUI {
 		btnViewStock = new JButton("View Stock");
 		btnViewStock.setBounds(333, 94, 117, 29);
 		frame.getContentPane().add(btnViewStock);
-		
-		lblCash = new JLabel("Cash");
-		lblCash.setBounds(333, 6, 61, 16);
-		frame.getContentPane().add(lblCash);
 		}
 }

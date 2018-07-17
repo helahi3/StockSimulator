@@ -1,3 +1,6 @@
+import controller.ViewController;
+import model.Portfolio;
+import view.GUI;
 
 public class Application {
 

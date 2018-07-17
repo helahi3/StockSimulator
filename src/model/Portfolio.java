@@ -1,10 +1,15 @@
+package model;
+
 /**
+
  * Portfolio class
  * Creates a portfolio object
  */
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import controller.APIController;
 
 
 public class Portfolio  {
@@ -13,6 +18,16 @@ public class Portfolio  {
 	private ArrayList<Stock> stockList;
 	private Double portfolioValue;
 	private Double cash;
+	
+
+	/**
+	 * Constructor
+	 */
+	public Portfolio() {
+		stockList = new ArrayList<Stock>();
+		portfolioValue = 0.0;
+		cash = 10000.0;
+	}
 	
 	/**
 	 * Getter method for stockList
@@ -30,17 +45,9 @@ public class Portfolio  {
 		return cash;
 	}
 
-	/**
-	 * Constructor
-	 */
-	public Portfolio() {
-		stockList = new ArrayList<Stock>();
-		portfolioValue = 0.0;
-		cash = 10000.0;
-	}
 	
 	/**
-	 * Initialize the portfolio with a certain amount of cash
+	 * Initialize the portfolio with a certain amount of cash. Currently unused method
 	 * @param cash
 	 * @throws Exception
 	 */

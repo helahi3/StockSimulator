@@ -1,3 +1,6 @@
+package model;
+
+import controller.APIController;
 
 public class Stock {
 
@@ -9,12 +12,13 @@ public class Stock {
 	
 	
 	/**
-	 * Constructor
-	 * @param symbol
-	 * @param quantity
-	 * @param price
+	 * Constructor that fails if symbol is empty string, longer than 5 or if price/quantity is 0 or negative
+	 * @param symbol of the stock
+	 * @param quantity owned
+	 * @param price at the time of purchase is set to current and purchase price
 	 */
 	public Stock(String symbol, int quantity, double price) {
+		if(symbol.equals("") || symbol.length() > 5 || quantity <= 0 || price <= 0) return;
 		this.symbol = symbol;
 		this.quantity = quantity;
 		this.currentPrice = price;

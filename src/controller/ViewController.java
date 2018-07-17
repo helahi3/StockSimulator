@@ -1,12 +1,19 @@
+package controller;
+
 /**
+
  * View Controller Method.
- * Interacts with the View (GUI.java) and Model (Portfolio.java), updating them
+ * Interacts with the View (GUI.java), Model (Portfolio.java) and FileIO , updating them
  * 
  */
 
 import java.io.Serializable;
 
 import javax.swing.JOptionPane;
+
+import model.Portfolio;
+import model.Stock;
+import view.GUI;
 
 public class ViewController implements Serializable {
 	
@@ -46,21 +53,26 @@ public class ViewController implements Serializable {
 		gui.getBtnViewPortfolio().addActionListener(e -> viewPortfolio());
 	}
 	
-	/**
-	 * TODO: Update the label to display the cash in account
-	 */
-	private void updateCash() {
-		Double cash = portfolio.getCash();
-		gui.setLblCash(cash);
-	}
+//	/**
+//	 * TODO: Update the label to display the cash in account
+//	 */
+//	private void updateCash() {
+//		Double cash = portfolio.getCash();
+//		gui.setLblCash(cash);
+//	}
 	
 	/**
 	 * Purchase a stock, getting input from the gui, and updating the model
 	 */
 	private void buy() {
-		String symbol = gui.getTxtStockSymbol().getText();
-		int quantity = Integer.parseInt(gui.getTxtQuantity().getText());
+		String symbol = getStockSymbol(gui);
+		int quantity = getStockQuantity(gui);
+		if(quantity == -1 || symbol == null) {
+			JOptionPane.showMessageDialog(null, "Please input correct values","info",JOptionPane.INFORMATION_MESSAGE);
+		}
 		
+		int confirmation = JOptionPane.showConfirmDialog(null, "Do you wish to buy " + quantity + " shares of " + symbol +"?");
+		if(confirmation != 0) return;
 		
 		boolean success = portfolio.stockPurchase(symbol, quantity);
 		
@@ -77,8 +89,16 @@ public class ViewController implements Serializable {
 	 * Sell a stock, getting input from the gui, and updating the model
 	 */
 	private void sell() {
-		String symbol = gui.getTxtStockSymbol().getText();
-		int quantity = Integer.parseInt(gui.getTxtQuantity().getText());
+		String symbol = getStockSymbol(gui);
+		int quantity = getStockQuantity(gui);
+		if(quantity == -1 || symbol == null) {
+			JOptionPane.showMessageDialog(null, "Please input correct values","info",JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		int confirmation = JOptionPane.showConfirmDialog(null, "Do you wish to sell " + quantity + " shares of " + symbol +"?");
+		if(confirmation != 0) return;
+
+		
 		boolean success = portfolio.stockSale(symbol, quantity);
 		if(success) {
 			JOptionPane.showMessageDialog(null, "Stock sale successful","info",JOptionPane.INFORMATION_MESSAGE);
@@ -105,6 +125,33 @@ public class ViewController implements Serializable {
 		gui.setTxtrDisplayInfoHere(info);
 	}
 	
+	/**
+	 * 
+	 * @param gui
+	 * @return  stock symbol from the gui. Returns null if nothing is entered
+	 */
+	private String getStockSymbol(GUI gui) {
+		String symbol = gui.getTxtStockSymbol().getText();
+		if(symbol.length() == 0) return null;	
+		
+		return symbol;
+	}
 	
+	/**
+	 * 
+	 * @param gui
+	 * @return stock quantity from the gui. Returns -1 if error with input
+	 */
+	private int getStockQuantity(GUI gui) {
+		String input = gui.getTxtQuantity().getText();
+		try {
+			int quantity = Integer.parseInt(input);
+			return quantity;
+		} catch(Exception e) {
+			return -1;
+		}
+		
+
+	}
 	
 }
