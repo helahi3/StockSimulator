@@ -1,81 +1,66 @@
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.thoughtworks.xstream.XStream;
 
 import controller.ViewController;
 
 public class FileIO {
 
-	public static void saveToFile(byte[] b) {
-		try {
-			FileOutputStream fos = new FileOutputStream("/Portfolio"); 
-			fos.write(b);
-		} catch (Exception e) {
-			//TODO:Do something
-		}
+	public String toXStream(ViewController vc) {
+		XStream xs = new XStream();
+		String xml = xs.toXML(vc);
+		return xml;
 	}
 	
-//	public static byte[] loadFromFile(String pathname) {
-//		FileInputStream fis;
-//		try { 
-//			fis = new FileInputStream(pathname);
-//			while(fis.read() != -1);
-//		} catch (Exception e) {
-//			//TODO: do something
-//		} finally {
-//			return fis.toString();
-//		}
-//		 
-//	}
+	public ViewController toVC(String xml) {
+		XStream xs = new XStream();
+		ViewController vc = (ViewController) xs.fromXML(xml);
+		
+		return vc;
+	}
+	
+	public static void writeToFile(String xml, String filename) {
+		
+		try {
+			FileWriter fr = new FileWriter(filename);
+			BufferedWriter br = new BufferedWriter(fr);
+			
+			br.write(xml);
+			
+			br.close();
+			fr.close();
+			
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException("Cannot find the file: " + filename);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("IO Exception with this file: " + filename);
+		}
+		
+	}
+	
+	public static String readFromFile(String filename) {
+		String xml = "";
+		try {
+			FileReader fr = new FileReader(filename);
+			BufferedReader br = new BufferedReader(fr);
+			
+			xml = br.readLine();
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException("Cannot find the file: " + filename);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("IO Exception with this file: " + filename);
+		}
+		
+		return "";
+	}
 	
 	
-    public static byte[] getByteArrayObject(ViewController vc){
-        byte[] byteArrayObject = null;
-        try {
-            
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bos);
-            oos.writeObject(vc);
-            
-            oos.close();
-            bos.close();
-            
-            byteArrayObject = bos.toByteArray();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return byteArrayObject;
-        }
-        return byteArrayObject;
-    }
-    
-    public static ViewController getJavaObject(byte[] convertObject) {
-    	ViewController vc = null;
-    	
-        ByteArrayInputStream bais;
-        ObjectInputStream ins;
-        try {
-        
-        bais = new ByteArrayInputStream(convertObject);
-        
-        ins = new ObjectInputStream(bais);
-         vc =(ViewController) ins.readObject();
-        
-        ins.close();
-
-        }
-        catch (Exception e) {
-        e.printStackTrace();
-        }
-        return vc;
-    }
-    
-
-    
-    
+	
     
     
 }

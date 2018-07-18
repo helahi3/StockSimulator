@@ -170,7 +170,8 @@ public class Portfolio  {
 			info += "\n\n";
 		}
 		String portfolioInfo = "";
-		portfolioInfo = "Cash: " + cash + "\nNumber of Positions: " + stockList.size() + "\n";
+		portfolioInfo = "Cash: " + cash + "\nNumber of Positions: " + stockList.size() + 
+				"\nPortfolioValue: " + updatePortfolioValue() + "\n";
 		 
 		return portfolioInfo + info;
 	}
