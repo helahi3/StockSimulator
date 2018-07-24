@@ -25,7 +25,11 @@ public class GUI {
 	private JButton btnViewStock;
 	
 	private JOptionPane openingDialog;
+	private JButton btnSave;
 	
+	public JButton getBtnSave() {
+		return btnSave;
+	}
 
 	public JButton getBtnViewPortfolio() {
 		return btnViewPortfolio;
@@ -168,5 +172,9 @@ public class GUI {
 		btnViewStock = new JButton("View Stock");
 		btnViewStock.setBounds(333, 94, 117, 29);
 		frame.getContentPane().add(btnViewStock);
+		
+		btnSave = new JButton("Save to File");
+		btnSave.setBounds(333, 6, 117, 29);
+		frame.getContentPane().add(btnSave);
 		}
 }

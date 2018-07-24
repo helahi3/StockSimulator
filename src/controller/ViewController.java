@@ -1,12 +1,5 @@
 package controller;
 
-/**
-
- * View Controller Method.
- * Interacts with the View (GUI.java), Model (Portfolio.java) and FileIO , updating them
- * 
- */
-
 import java.io.Serializable;
 
 import javax.swing.JOptionPane;
@@ -15,13 +8,14 @@ import model.Portfolio;
 import model.Stock;
 import view.GUI;
 
+/**
+ * View Controller Method.
+ * Interacts with the View (GUI.java), Model (Portfolio.java) and FileIO , updating them
+ * @author Hamza
+ *
+ */
 public class ViewController implements Serializable {
-	
-	public int xyz;
-	public ViewController() {
-		xyz=0;
-	}
-	
+		
 	private GUI gui;
 	private Portfolio portfolio;
 	
@@ -51,6 +45,8 @@ public class ViewController implements Serializable {
 		gui.getBtnSell().addActionListener(e -> sell());
 		gui.getBtnViewStock().addActionListener(e -> viewStock());
 		gui.getBtnViewPortfolio().addActionListener(e -> viewPortfolio());
+		gui.getBtnSave().addActionListener(e -> savePortfolio());
+		
 	}
 	
 //	/**
@@ -150,8 +146,25 @@ public class ViewController implements Serializable {
 		} catch(Exception e) {
 			return -1;
 		}
-		
 
+	}
+	
+	/**
+	 * Save the portfolio to a file when the button is clicked
+	 */
+	private void savePortfolio() {
+		String xml = FileIO.toXStream(this);
+		FileIO.writeToFile(xml, "portfolio.txt");
+	}
+	
+	/**
+	 * TODO: Load the portfolio from a file when the button is clicked
+	 */
+	private void loadPortfolio() {
+		String xml = FileIO.readFromFile("portfolio.txt");
+		ViewController vc = FileIO.toVC(xml);
+		this.gui  = vc.gui;
+		this.portfolio = vc.portfolio;
 	}
 	
 }

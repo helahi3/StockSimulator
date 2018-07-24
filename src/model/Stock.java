@@ -2,6 +2,12 @@ package model;
 
 import controller.APIController;
 
+/**
+ * Stock Class
+ * @author Hamza Elahi
+ * Contains all the features of the stock object
+ *
+ */
 public class Stock {
 
 	private String symbol;

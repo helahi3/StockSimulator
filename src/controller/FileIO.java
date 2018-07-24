@@ -1,3 +1,5 @@
+package controller; 
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -9,21 +11,41 @@ import com.thoughtworks.xstream.XStream;
 
 import controller.ViewController;
 
+/**
+ * FileIO class that deals with exporting portfolio to xml format
+ * @author Hamza
+ *
+ */
 public class FileIO {
 
-	public String toXStream(ViewController vc) {
+	/**
+	 * Converts a ViewController into XML format
+	 * @param view controller
+	 * @return xml
+	 */
+	public static String toXStream(ViewController vc) {
 		XStream xs = new XStream();
 		String xml = xs.toXML(vc);
 		return xml;
 	}
 	
-	public ViewController toVC(String xml) {
+	/**
+	 * Converts an XML string to a View Controller
+	 * @param xml
+	 * @return view controller
+	 */
+	public static ViewController toVC(String xml) {
 		XStream xs = new XStream();
 		ViewController vc = (ViewController) xs.fromXML(xml);
 		
 		return vc;
 	}
 	
+	/**
+	 * Write the string xml to a given file
+	 * @param xml
+	 * @param filename
+	 */
 	public static void writeToFile(String xml, String filename) {
 		
 		try {
@@ -43,6 +65,11 @@ public class FileIO {
 		
 	}
 	
+	/**
+	 * Read from a file and return the string xml
+	 * @param filename
+	 * @return xml 
+	 */
 	public static String readFromFile(String filename) {
 		String xml = "";
 		try {

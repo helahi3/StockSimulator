@@ -1,17 +1,18 @@
 package model;
 
-/**
 
- * Portfolio class
- * Creates a portfolio object
- */
-
+//
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import controller.APIController;
 
-
+/**
+ * Portfolio class
+ * Creates a portfolio that contains 0->n stocks
+ * @author Hamza
+ *
+ */
 public class Portfolio  {
 
 	//TODO: Decide which one to use

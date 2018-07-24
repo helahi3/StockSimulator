@@ -1,6 +1,4 @@
 package controller;
-//Wrapper for AlphaVantage API
-//Limited use, only wrapping the necessary functions
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,19 +12,22 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * Wrapper for the AlphaVantage API
+ * Limited use, only wrapping the necessary function
+ * Get the stock price in JSON format
+ * @author Hamza
+ *
+ */
 public class APIController {
 	
 	
 	static final String apiKey = "WBFOAOCT38SFVAQA";
-    int timeout = 3000;
 
-
-	//https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=1min&apikey=WBFOAOCT38SFVAQA
     
     /**
      * Checks the alpha vantage api to get the stock price of the object
-     * @param symbol
-     * @param dateTime
+     * @param symbol you wish to get the price for
      * @return the current stock price. Returns -1 if error
      */
     public static Double getStockPrice(String symbol) {
@@ -72,7 +73,12 @@ public class APIController {
 		}
     }
     
-    //Code from Stack overflow, TODO: refactor it
+    /**
+	 * Code from StackOverflow TODO: Reformat it
+     * @param Reader to parse
+     * @return the input in String format
+     * @throws IOException
+     */
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
